@@ -19,7 +19,7 @@ import bg from '%/images/bg.png';
 import arte from '%/images/arte.png';
 import Link from 'next/link';
 
-export default function Signin(datos: any) {
+export default function Signin() {
   console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -109,33 +109,26 @@ export default function Signin(datos: any) {
     </Grid>
   );
 }
-
 export async function getServerSideProps(context: any) {
-  // Realizar una solicitud POST a la API externa
-  const respuesta = await fetch('https://amazing-dasik-c6d42a.netlify.app/signin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // Cuerpo de la solicitud (puedes ajustarlo según tus necesidades)
-    body: JSON.stringify({ key: 'valor' }),
-  });
+  if (context.req.method === 'POST') {
+    try {
+      // Obtener los datos del cuerpo de la solicitud
+      const datos = context.req.body;
 
-  // Verificar si la solicitud fue exitosa (código 200)
-  if (!respuesta.ok) {
-    console.error('Error al obtener datos externos');
-    return {
-      notFound: true,
-    };
+      // Hacer algo con los datos (en este caso, imprimir en la consola)
+      console.log('Datos recibidos:', datos);
+
+      // Puedes retornar datos para que estén disponibles en la prop `props` del componente
+      return {
+        props: {},
+      };
+    } catch (error) {
+      console.error('Error al procesar la solicitud POST:', error);
+    }
   }
 
-  // Obtener los datos de la respuesta
-  const datos = await respuesta.json();
-
-  // Retornar los datos como props
+  // Si no es una solicitud POST, simplemente retorna un objeto vacío
   return {
-    props: {
-      datos,
-    },
+    props: {},
   };
 }
