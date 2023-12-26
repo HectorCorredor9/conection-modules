@@ -20,7 +20,6 @@ import arte from '%/images/arte.png';
 import Link from 'next/link';
 
 export default function Signin() {
-  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
