@@ -19,7 +19,8 @@ import bg from '%/images/bg.png';
 import arte from '%/images/arte.png';
 import Link from 'next/link';
 
-export default function Signin() {
+export default function Signin(datos: any) {
+  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -107,4 +108,34 @@ export default function Signin() {
       </Grid>
     </Grid>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  // Realizar una solicitud POST a la API externa
+  const respuesta = await fetch('https://amazing-dasik-c6d42a.netlify.app/signin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // Cuerpo de la solicitud (puedes ajustarlo según tus necesidades)
+    body: JSON.stringify({ key: 'valor' }),
+  });
+
+  // Verificar si la solicitud fue exitosa (código 200)
+  if (!respuesta.ok) {
+    console.error('Error al obtener datos externos');
+    return {
+      notFound: true,
+    };
+  }
+
+  // Obtener los datos de la respuesta
+  const datos = await respuesta.json();
+
+  // Retornar los datos como props
+  return {
+    props: {
+      datos,
+    },
+  };
 }
