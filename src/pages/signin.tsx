@@ -108,16 +108,13 @@ export default function Signin() {
     </Grid>
   );
 }
+
 export async function getServerSideProps(context: any) {
   if (context.req.method === 'POST') {
     try {
-      // Obtener los datos del cuerpo de la solicitud
       const datos = context.req.body;
-
-      // Hacer algo con los datos (en este caso, imprimir en la consola)
       console.log('Datos recibidos:', datos);
 
-      // Puedes retornar datos para que estén disponibles en la prop `props` del componente
       return {
         props: {},
       };
@@ -126,7 +123,6 @@ export async function getServerSideProps(context: any) {
     }
   }
 
-  // Si no es una solicitud POST, simplemente retorna un objeto vacío
   return {
     props: {},
   };
