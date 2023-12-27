@@ -20,7 +20,7 @@ import arte from '%/images/arte.png';
 import Link from 'next/link';
 
 export default function Signin({ datos }: any) {
-  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
+  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ props:', datos);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -113,16 +113,25 @@ export default function Signin({ datos }: any) {
 export async function getServerSideProps(context: any) {
   if (context.req.method === 'POST') {
     try {
+      // Obtener los datos del cuerpo de la solicitud
       const datos = context.req.body;
+
+      // Hacer algo con los datos (en este caso, imprimir en la consola)
+      console.log('Datos recibidos:', datos);
+
+      // Puedes retornar datos para que estén disponibles en la prop `props` del componente
       return {
-        datos,
+        props: {
+          datos,
+        },
       };
     } catch (error) {
       console.error('Error al procesar la solicitud POST:', error);
     }
   }
 
-  // return {
-  //   props: { datos },
-  // };
+  // Si no es una solicitud POST, simplemente retorna un objeto vacío
+  return {
+    props: {},
+  };
 }
