@@ -20,7 +20,7 @@ import arte from '%/images/arte.png';
 import Link from 'next/link';
 
 export default function Signin({ datos }: any) {
-  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ props:', datos);
+  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -111,10 +111,11 @@ export default function Signin({ datos }: any) {
 }
 
 export async function getServerSideProps(context: any) {
+  console.log('🚀 ~ file: Signin.tsx:114 ~ getServerSideProps ~ context:', context.req);
   if (context.req.method === 'POST') {
     try {
       // Obtener los datos del cuerpo de la solicitud
-      const datos = context.req.body;
+      const datos = context.req;
 
       // Hacer algo con los datos (en este caso, imprimir en la consola)
       console.log('Datos recibidos:', datos);
