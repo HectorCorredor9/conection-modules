@@ -19,7 +19,8 @@ import bg from '%/images/bg.png';
 import arte from '%/images/arte.png';
 import Link from 'next/link';
 
-export default function Signin({ props }: any) {
+export default function Signin({ props, datos }: any) {
+  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
   console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ props:', props);
   const [showPassword, setShowPassword] = useState(false);
 
