@@ -19,9 +19,8 @@ import bg from '%/images/bg.png';
 import arte from '%/images/arte.png';
 import Link from 'next/link';
 
-export default function Signin({ props, datos }: any) {
+export default function Signin({ datos }: any) {
   console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
-  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ props:', props);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -116,7 +115,7 @@ export async function getServerSideProps(context: any) {
     try {
       const datos = context.req.body;
       return {
-        props: { datos },
+        datos,
       };
     } catch (error) {
       console.error('Error al procesar la solicitud POST:', error);
