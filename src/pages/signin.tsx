@@ -19,8 +19,8 @@ import bg from '%/images/bg.png';
 import arte from '%/images/arte.png';
 import Link from 'next/link';
 
-export default function Signin({ datos }: any) {
-  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datos);
+export default function Signin({ datosDelCuerpo }: any) {
+  console.log('🚀 ~ file: Signin.tsx:23 ~ Signin ~ datos:', datosDelCuerpo);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -111,19 +111,19 @@ export default function Signin({ datos }: any) {
 }
 
 export async function getServerSideProps(context: any) {
-  console.log('🚀 ~ file: Signin.tsx:114 ~ getServerSideProps ~ context:', context.req);
+  // Verificar si la solicitud es un POST
   if (context.req.method === 'POST') {
     try {
-      // Obtener los datos del cuerpo de la solicitud
-      const datos = context.req;
+      // Obtener el cuerpo de la solicitud POST
+      const datosDelCuerpo = context.req.body;
 
-      // Hacer algo con los datos (en este caso, imprimir en la consola)
-      console.log('Datos recibidos:', datos);
+      // Realizar acciones con los datos del cuerpo
+      console.log('Datos del cuerpo de la solicitud:', datosDelCuerpo);
 
-      // Puedes retornar datos para que estén disponibles en la prop `props` del componente
+      // Retornar los datos como props
       return {
         props: {
-          datos,
+          datosDelCuerpo,
         },
       };
     } catch (error) {
@@ -133,6 +133,8 @@ export async function getServerSideProps(context: any) {
 
   // Si no es una solicitud POST, simplemente retorna un objeto vacío
   return {
-    props: {},
+    props: {
+      datosDelCuerpo: {},
+    },
   };
 }
