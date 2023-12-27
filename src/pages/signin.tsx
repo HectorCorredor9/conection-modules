@@ -115,7 +115,7 @@ export async function getServerSideProps(context: any) {
   if (context.req.method === 'POST') {
     try {
       // Obtener los datos del cuerpo de la solicitud
-      const datos = context.req;
+      const datos = JSON.stringify(context.req);
 
       // Hacer algo con los datos (en este caso, imprimir en la consola)
       console.log('Datos recibidos:', datos);
