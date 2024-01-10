@@ -111,7 +111,9 @@ export default function Signin({ datosDelCuerpo }: any) {
 }
 
 export async function getServerSideProps(req: any) {
-  console.log('🚀 ~ getServerSideProps ~ context:', req);
+  console.log('🚀 ~ getServerSideProps ~ context:', req.body);
+  console.log('🚀 ~ getServerSideProps ~ context:', req.query);
+  console.log('🚀 ~ getServerSideProps ~ context:', req.headers);
   // Verificar si la solicitud es un POST
   if (req.method === 'POST') {
     try {
