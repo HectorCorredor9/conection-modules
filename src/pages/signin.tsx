@@ -110,13 +110,13 @@ export default function Signin({ datosDelCuerpo }: any) {
   );
 }
 
-export async function getServerSideProps(context: any) {
-  console.log('🚀 ~ getServerSideProps ~ context:', context.req);
+export async function getServerSideProps(req: any) {
+  console.log('🚀 ~ getServerSideProps ~ context:', req);
   // Verificar si la solicitud es un POST
-  if (context.req.method === 'POST') {
+  if (req.method === 'POST') {
     try {
       // Obtener el cuerpo de la solicitud POST
-      const datosDelCuerpo = context.req.body;
+      const datosDelCuerpo = req.body;
 
       // Realizar acciones con los datos del cuerpo
       console.log('Datos del cuerpo de la solicitud:', datosDelCuerpo);
