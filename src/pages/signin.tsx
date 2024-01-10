@@ -114,6 +114,8 @@ export async function getServerSideProps(req: any) {
   console.log('🚀 ~ getServerSideProps ~ context:', req.body);
   console.log('🚀 ~ getServerSideProps ~ context:', req.query);
   console.log('🚀 ~ getServerSideProps ~ context:', req.headers);
+  console.log('🚀 ~ getServerSideProps ~ context:', req.method);
+  console.log('🚀 ~ getServerSideProps ~ context:', req.req);
   // Verificar si la solicitud es un POST
   if (req.method === 'POST') {
     try {
